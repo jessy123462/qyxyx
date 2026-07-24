@@ -1,0 +1,1357 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>铺就辉煌 — 企业文化闯关之旅</title>
+<style>
+:root{--p1:#6366f1;--p2:#8b5cf6;--s1:#10b981;--s2:#0d9488;--w1:#f59e0b;--d1:#ef4444;--bg:#0f0f23;--card:rgba(20,20,50,0.92);--text:#e2e8f0;--sub:#94a3b8;--gold:#fbbf24}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);min-height:100vh;overflow-x:hidden;user-select:none;-webkit-tap-highlight-color:transparent;color:var(--text)}
+
+/* 星空背景 */
+.stars{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.star{position:absolute;background:#fff;border-radius:50%;animation:twinkle ease-in-out infinite alternate}
+@keyframes twinkle{0%{opacity:0.3;transform:scale(1)}100%{opacity:1;transform:scale(1.5)}}
+
+/* 地面纹理 */
+.ground-texture{position:fixed;bottom:0;left:0;width:100%;height:120px;background:linear-gradient(180deg,transparent 0%,rgba(99,102,241,0.08) 50%,rgba(99,102,241,0.15) 100%);pointer-events:none;z-index:0}
+.ground-texture::after{content:'';position:absolute;bottom:0;left:0;width:200%;height:2px;background:linear-gradient(90deg,transparent,rgba(251,191,36,0.6),transparent,rgba(251,191,36,0.4),transparent);animation:floorShine 6s linear infinite}
+@keyframes floorShine{0%{transform:translateX(-50%)}100%{transform:translateX(0%)}}
+
+.game-wrapper{position:relative;z-index:1;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:16px}
+.game-container{width:100%;max-width:600px}
+
+/* ============ 首页 ============ */
+.home-screen{text-align:center;animation:fadeInUp 0.8s ease}
+.home-logo{font-size:64px;margin-bottom:16px;animation:logoBounce 2s ease-in-out infinite}
+@keyframes logoBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+.home-title{font-size:36px;font-weight:900;margin-bottom:8px;background:linear-gradient(135deg,#fbbf24,#f59e0b,#f97316);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.home-subtitle{font-size:16px;color:var(--sub);margin-bottom:32px;letter-spacing:3px}
+.home-badge{display:inline-flex;align-items:center;gap:8px;padding:10px 24px;border:1px solid rgba(251,191,36,0.3);border-radius:50px;margin-bottom:36px;background:rgba(251,191,36,0.08)}
+.home-badge span{font-size:13px;color:var(--gold)}
+.home-desc{max-width:320px;margin:0 auto 36px;line-height:1.8;color:var(--sub);font-size:14px}
+.home-btn{padding:16px 64px;border:none;border-radius:50px;font-size:18px;font-weight:800;cursor:pointer;background:linear-gradient(135deg,#f59e0b,#f97316);color:#fff;box-shadow:0 8px 30px rgba(245,158,11,0.4);transition:all 0.3s ease;letter-spacing:2px}
+.home-btn:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(245,158,11,0.6)}
+.home-btn:active{transform:scale(0.96)}
+.home-features{display:flex;gap:16px;justify-content:center;margin-top:32px}
+.home-feat{text-align:center;padding:12px 16px;background:rgba(255,255,255,0.04);border-radius:14px;border:1px solid rgba(255,255,255,0.06)}
+.home-feat .feat-icon{font-size:28px;margin-bottom:6px}
+.home-feat .feat-label{font-size:12px;color:var(--sub)}
+
+/* ============ 关卡头部 ============ */
+.level-header{display:flex;align-items:center;gap:12px;margin-bottom:20px;padding:14px 20px;background:var(--card);border-radius:20px;backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.06)}
+.lh-icon{font-size:28px}
+.lh-info{flex:1}
+.lh-title{font-size:15px;font-weight:800}
+.lh-sub{font-size:11px;color:var(--sub)}
+.lh-lives{display:flex;gap:4px}
+.lh-life{font-size:18px;transition:all 0.3s}
+.lh-life.lost{opacity:0.25;transform:scale(0.8)}
+.lh-timer{font-size:15px;font-weight:800;color:var(--w1);min-width:40px;text-align:right}
+.lh-timer.urgent{color:var(--d1);animation:blink 0.5s ease infinite}
+@keyframes blink{50%{opacity:0.3}}
+.progress-mini{height:4px;background:rgba(255,255,255,0.1);border-radius:2px;overflow:hidden;margin-top:6px}
+.progress-mini-fill{height:100%;background:linear-gradient(90deg,var(--p1),var(--gold));border-radius:2px;transition:width 0.4s}
+
+/* ============ 第一关：使命拼图 ============ */
+.lv1-scene{position:relative}
+.lv1-theme{text-align:center;margin-bottom:12px}
+.lv1-theme-icon{font-size:48px}
+.lv1-theme-title{font-size:20px;font-weight:800;color:var(--gold);margin-bottom:2px}
+.lv1-theme-hint{font-size:11px;color:var(--sub);margin-top:2px}
+.lv1-board{background:linear-gradient(180deg,rgba(30,30,60,0.9),rgba(20,20,50,0.9));border-radius:20px;padding:16px;border:1px solid rgba(255,255,255,0.08);position:relative;overflow:hidden}
+.lv1-board::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");opacity:0.6;pointer-events:none}
+.lv1-section-title{font-size:11px;font-weight:700;color:var(--sub);text-align:center;margin-bottom:8px;letter-spacing:2px;text-transform:uppercase}
+.lv1-slots{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;position:relative;z-index:1}
+.lv1-slot{min-height:50px;border:2px dashed rgba(255,255,255,0.15);border-radius:12px;display:flex;align-items:center;justify-content:center;padding:8px 6px;font-size:13px;color:rgba(255,255,255,0.25);cursor:pointer;transition:all 0.3s;background:rgba(0,0,0,0.25);position:relative;text-align:center}
+.lv1-slot.filled{border-style:solid;border-color:rgba(251,191,36,0.4);color:#fff;font-weight:600;background:rgba(251,191,36,0.06);font-size:13px}
+.lv1-slot.correct{border-color:var(--s1);background:rgba(16,185,129,0.1);animation:stoneLock 0.5s ease}
+.lv1-slot.wrong{border-color:var(--d1);background:rgba(239,68,68,0.1);animation:stoneBounce 0.5s ease}
+.lv1-slot.slot-hover{border-color:var(--w1);background:rgba(251,191,36,0.1)}
+@keyframes stoneLock{0%{transform:scale(1.06)}50%{transform:scale(0.96)}100%{transform:scale(1)}}
+@keyframes stoneBounce{0%{transform:translateX(0)}20%{transform:translateX(-12px)}40%{transform:translateX(10px)}60%{transform:translateX(-6px)}80%{transform:translateX(4px)}100%{transform:translateX(0)}}
+.lv1-pieces{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;justify-content:center;position:relative;z-index:1}
+.lv1-piece{padding:7px 13px;border-radius:38px;font-size:12px;font-weight:600;cursor:pointer;transition:all 0.3s;background:linear-gradient(135deg,rgba(99,102,241,0.25),rgba(139,92,246,0.25));border:1px solid rgba(99,102,241,0.35);color:#c7d2fe;white-space:nowrap}
+.lv1-piece:hover{transform:translateY(-2px);background:linear-gradient(135deg,rgba(99,102,241,0.45),rgba(139,92,246,0.45));box-shadow:0 4px 14px rgba(99,102,241,0.3)}
+.lv1-piece.selected{background:linear-gradient(135deg,#f59e0b,#f97316)!important;color:#fff!important;border-color:#fbbf24!important;box-shadow:0 0 20px rgba(245,158,11,0.5);transform:translateY(-3px)}
+.lv1-piece.used{opacity:0.2;pointer-events:none;transform:scale(0.9)}
+.lv1-piece.bounce-back{animation:pieceBounce 0.4s ease}
+.lv1-piece.wrong-piece{animation:wrongShake 0.4s ease;border-color:#ef4444!important;background:rgba(239,68,68,0.2)!important}
+@keyframes wrongShake{0%,100%{transform:translateX(0)}20%{transform:translateX(-6px)}40%{transform:translateX(5px)}60%{transform:translateX(-3px)}80%{transform:translateX(2px)}}
+@keyframes pieceBounce{0%{transform:scale(1.15)}50%{transform:scale(0.85)}100%{transform:scale(1)}}
+.lv1-progress-info{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:8px;font-size:11px;color:var(--sub)}
+.lv1-divider{height:1px;background:rgba(255,255,255,0.06);margin:12px 0}
+.lv1-ctrls{display:flex;gap:10px;margin-top:12px;justify-content:center;position:relative;z-index:1}
+.btn-sm{padding:10px 22px;border:1px solid rgba(255,255,255,0.15);border-radius:50px;font-size:13px;font-weight:600;cursor:pointer;background:rgba(255,255,255,0.05);color:var(--text);transition:all 0.3s}
+.btn-sm:hover{background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.25)}
+.btn-gold{padding:14px 40px;border:none;border-radius:50px;font-size:16px;font-weight:800;cursor:pointer;background:linear-gradient(135deg,#f59e0b,#f97316);color:#fff;box-shadow:0 6px 24px rgba(245,158,11,0.35);transition:all 0.3s;letter-spacing:1px}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(245,158,11,0.5)}
+.btn-gold:active{transform:scale(0.96)}
+
+/* Toast */
+.toast{position:fixed;top:24px;left:50%;transform:translateX(-50%);padding:12px 28px;border-radius:50px;font-weight:700;font-size:14px;z-index:200;box-shadow:0 8px 30px rgba(0,0,0,0.3);animation:toastIn 0.4s ease,toastOut 0.4s ease 2s forwards;pointer-events:none}
+.toast-success{background:#10b981;color:#fff}
+.toast-error{background:#ef4444;color:#fff}
+.toast-info{background:#6366f1;color:#fff}
+.toast-warn{background:#f59e0b;color:#000}
+@keyframes toastIn{from{opacity:0;transform:translateX(-50%) translateY(-20px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
+@keyframes toastOut{from{opacity:1}to{opacity:0;transform:translateX(-50%) translateY(-20px)}}
+
+/* ============ 第二关：价值观归类 ============ */
+.lv2-scene{position:relative;height:520px;overflow:hidden}
+.lv2-theme{text-align:center;margin-bottom:0;position:absolute;top:8px;left:50%;transform:translateX(-50%);z-index:5}
+.lv2-theme-title{font-size:18px;font-weight:800;color:var(--gold)}
+.lv2-drop-zone{position:absolute;top:40px;left:0;width:100%;height:100%;pointer-events:none}
+.lv2-word{position:absolute;padding:8px 16px;border-radius:50px;font-size:13px;font-weight:700;cursor:pointer;pointer-events:auto;transition:transform 0.15s,box-shadow 0.15s;z-index:3;opacity:0;animation:wordAppear 0.5s ease forwards}
+@keyframes wordAppear{from{opacity:0;transform:scale(0.5)}to{opacity:1;transform:scale(1)}}
+@keyframes floatA{0%,100%{transform:translate(0,0)}25%{transform:translate(6px,-8px)}50%{transform:translate(-4px,-16px)}75%{transform:translate(-8px,-6px)}}
+@keyframes floatB{0%,100%{transform:translate(0,0)}25%{transform:translate(-8px,-6px)}50%{transform:translate(4px,-14px)}75%{transform:translate(8px,-4px)}}
+@keyframes floatC{0%,100%{transform:translate(0,0)}25%{transform:translate(5px,-10px)}50%{transform:translate(-6px,-18px)}75%{transform:translate(-5px,-8px)}}
+@keyframes floatD{0%,100%{transform:translate(0,0)}25%{transform:translate(-6px,-5px)}50%{transform:translate(8px,-12px)}75%{transform:translate(4px,-7px)}}
+.lv2-word:hover{transform:scale(1.1);z-index:10}
+.lv2-word.selected{transform:scale(1.15)!important;box-shadow:0 0 20px rgba(251,191,36,0.6)!important;border:2px solid #fbbf24!important;z-index:10;animation-play-state:paused!important}
+.lv2-word.caught{animation:wordCaught 0.4s ease forwards!important}
+@keyframes wordCaught{0%{transform:scale(1);opacity:1}50%{transform:scale(1.3)}100%{transform:scale(0);opacity:0}}
+.lv2-buckets{position:absolute;bottom:8px;left:0;width:100%;display:flex;gap:6px;padding:0 8px;pointer-events:auto;z-index:4}
+.lv2-bucket{flex:1;border-radius:16px;padding:8px 4px;text-align:center;cursor:pointer;transition:all 0.3s;border:2px solid transparent;min-height:70px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(0,0,0,0.5);backdrop-filter:blur(10px)}
+.lv2-bucket .b-icon{font-size:22px}
+.lv2-bucket .b-name{font-size:10px;font-weight:700;margin-top:2px}
+.lv2-bucket .b-count{font-size:9px;opacity:0.6}
+.lv2-bucket:hover,.lv2-bucket.bucket-hover{border-color:rgba(255,255,255,0.5);background:rgba(0,0,0,0.7)}
+.lv2-bucket.bucket-flash{border-color:var(--s1)!important;background:rgba(16,185,129,0.2)!important;animation:popIn 0.3s ease}
+.lv2-bucket.bucket-wrong{border-color:var(--d1)!important;background:rgba(239,68,68,0.2)!important}
+@keyframes popIn{0%{transform:scale(1.1)}100%{transform:scale(1)}}
+.lv2-trash{flex:0.6!important;background:rgba(239,68,68,0.15)!important;border-color:rgba(239,68,68,0.3)!important}
+.lv2-score-board{position:absolute;top:8px;right:12px;z-index:5;font-size:13px;font-weight:700;color:var(--gold)}
+
+/* ============ 第三关：极速驰骋·第一品牌 ============ */
+.lv3-scene{position:relative}
+.lv3-theme{text-align:center;margin-bottom:12px}
+.lv3-theme-icon{font-size:48px;animation:engineVibrate 0.3s ease-in-out infinite alternate}
+@keyframes engineVibrate{from{transform:translate(0,0)}to{transform:translate(1px,-2px)}}
+.lv3-theme-title{font-size:20px;font-weight:800;color:var(--gold)}
+.lv3-canvas-wrap{position:relative;border-radius:20px;overflow:hidden;border:2px solid rgba(251,191,36,0.2);background:#1a1a1a;box-shadow:0 0 30px rgba(251,191,36,0.1) inset}
+.lv3-canvas-wrap canvas{display:block;width:100%}
+.lv3-overlay{position:absolute;inset:0;pointer-events:none;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:5}
+.lv3-overlay .overlay-text{font-size:28px;font-weight:900;color:var(--gold);text-shadow:0 0 30px rgba(251,191,36,0.6)}
+.lv3-overlay .overlay-sub{font-size:14px;color:var(--sub);margin-top:8px;text-align:center;line-height:1.6}
+.lv3-ctrl-hint{text-align:center;margin-top:10px;font-size:12px;color:var(--sub);display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.lv3-ctrl-hint span{display:flex;align-items:center;gap:4px}
+.lv3-hud{position:absolute;top:8px;left:8px;right:8px;display:flex;justify-content:space-between;align-items:center;pointer-events:none;z-index:4}
+.lv3-hud-item{display:flex;align-items:center;gap:4px;font-size:12px;font-weight:700;color:#fff;background:rgba(0,0,0,0.6);padding:4px 10px;border-radius:20px;backdrop-filter:blur(6px)}
+.lv3-hud-item.stars{color:var(--gold)}
+.lv3-hud-item.lives{color:#ef4444}
+.lv3-progress-wrap{position:absolute;bottom:4px;left:12px;right:12px;height:6px;background:rgba(255,255,255,0.1);border-radius:3px;overflow:hidden;z-index:4}
+.lv3-progress-fill{height:100%;background:linear-gradient(90deg,#f59e0b,#fbbf24,#f97316);border-radius:3px;transition:width 0.3s}
+
+/* ============ 第四关：消消乐 ============ */
+.lv4-scene{position:relative}
+.lv4-theme{text-align:center;margin-bottom:12px}
+.lv4-theme-title{font-size:20px;font-weight:800;color:var(--gold)}
+.lv4-theme-sub{font-size:12px;color:var(--sub)}
+.lv4-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;padding:10px;background:rgba(0,0,0,0.3);border-radius:16px}
+.lv4-cell{aspect-ratio:1;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:all 0.2s;position:relative;gap:2px;user-select:none}
+.lv4-cell .lv4-icon{font-size:18px;line-height:1}
+.lv4-cell .lv4-label{font-size:9px;font-weight:700;line-height:1;opacity:0.8}
+.lv4-cell:hover{transform:scale(1.08)}
+.lv4-cell.selected{transform:scale(1.1);box-shadow:0 0 0 3px var(--gold),0 0 20px rgba(251,191,36,0.4)}
+.lv4-cell.matched{animation:cellPop 0.4s ease}
+@keyframes cellPop{0%{transform:scale(1.2);opacity:1}100%{transform:scale(0);opacity:0}}
+.lv4-score{text-align:center;margin-top:10px;font-size:14px;font-weight:700;color:var(--gold)}
+.lv4-target{text-align:center;font-size:12px;color:var(--sub);margin-top:4px}
+
+/* ============ 通关弹窗 ============ */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:100;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(6px);animation:fadeIn 0.4s ease}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.modal{background:linear-gradient(180deg,#1e1e3a,#151530);border-radius:24px;padding:36px 28px;text-align:center;max-width:380px;width:90%;border:1px solid rgba(255,255,255,0.1);box-shadow:0 20px 60px rgba(0,0,0,0.5);animation:modalIn 0.5s cubic-bezier(0.175,0.885,0.32,1.275)}
+@keyframes modalIn{from{transform:scale(0.8);opacity:0}to{transform:scale(1);opacity:1}}
+.modal-icon{font-size:72px;margin-bottom:12px}
+.modal-title{font-size:24px;font-weight:900;margin-bottom:8px;background:linear-gradient(135deg,#fbbf24,#f59e0b);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.modal-pass-text{font-size:14px;color:var(--sub);line-height:1.8;margin-bottom:24px}
+.modal .btn-gold{display:inline-block}
+
+/* 彩带/纸屑 */
+.confetti-wrap{position:fixed;inset:0;pointer-events:none;z-index:150}
+.confetti{position:absolute;border-radius:3px;animation:confettiFall linear forwards}
+@keyframes confettiFall{0%{transform:translateY(-10vh) rotate(0deg) scale(1);opacity:1}80%{opacity:1}100%{transform:translateY(110vh) rotate(900deg) scale(0.3);opacity:0}}
+
+/* ============ 通关总汇 ============ */
+.final-scene{text-align:center;animation:fadeIn 1s ease;padding:40px 20px}
+.final-scene .final-icon{font-size:80px;margin-bottom:20px;animation:logoBounce 2s ease-in-out infinite}
+.final-scene .final-title{font-size:42px;font-weight:900;margin-bottom:12px}
+.final-scene .final-sparkle{display:inline-block;background:linear-gradient(135deg,#fbbf24,#f59e0b,#f97316,#fbbf24);background-size:200% 200%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:sparkleShift 2s ease infinite,glowPulse 1.5s ease-in-out infinite}
+@keyframes sparkleShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+@keyframes glowPulse{0%,100%{filter:drop-shadow(0 0 8px rgba(251,191,36,0.4))}50%{filter:drop-shadow(0 0 24px rgba(251,191,36,0.9))}}
+.final-scene .final-sub{font-size:16px;color:var(--sub);margin-bottom:24px;line-height:2}
+.final-scene .final-badges{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin:24px 0}
+.final-badge{padding:12px 20px;border-radius:16px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);font-size:13px;display:flex;align-items:center;gap:8px}
+.final-badge .badge-icon{font-size:24px}
+.final-floating-icons{position:fixed;inset:0;pointer-events:none;z-index:80}
+.floating-icon{position:absolute;font-size:40px;animation:floatAround 8s ease-in-out infinite;opacity:0.6}
+@keyframes floatAround{0%,100%{transform:translate(0,0) rotate(0deg)}25%{transform:translate(30px,-30px) rotate(10deg)}50%{transform:translate(-20px,-60px) rotate(-5deg)}75%{transform:translate(-40px,-20px) rotate(8deg)}}
+
+/* 响应式 */
+@media(max-width:480px){
+.lv2-scene{height:420px}
+.lv2-word{font-size:11px!important;padding:6px 12px!important}
+.lv2-bucket{padding:6px 2px;min-height:58px}
+.lv2-bucket .b-icon{font-size:18px}
+.lv2-bucket .b-name{font-size:9px}
+.lv4-grid{grid-template-columns:repeat(5,1fr);gap:4px}
+.lv4-cell{font-size:18px}
+.home-title{font-size:28px}
+.final-scene .final-title{font-size:30px}
+}
+</style>
+</head>
+<body>
+<div class="stars" id="stars"></div>
+<div class="ground-texture"></div>
+<div class="game-wrapper">
+<div class="game-container" id="gameContainer"></div>
+</div>
+<div id="toastContainer"></div>
+
+<script>
+// ==================== 音频引擎 ====================
+const AudioCtx = window.AudioContext || window.webkitAudioContext;
+let audioCtx = null;
+function ensureAudio(){if(!audioCtx)audioCtx=new AudioCtx();return audioCtx}
+
+function playSound(freq,type,dur,vol=0.15){
+  try{const ctx=ensureAudio();const o=ctx.createOscillator();const g=ctx.createGain();
+  o.type=type;o.frequency.setValueAtTime(freq,ctx.currentTime);
+  g.gain.setValueAtTime(vol,ctx.currentTime);g.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+dur);
+  o.connect(g);g.connect(ctx.destination);o.start();o.stop(ctx.currentTime+dur)}catch(e){}
+}
+
+function sfxStoneClick(){playSound(800,'square',0.08,0.2);setTimeout(()=>playSound(1200,'square',0.06,0.15),60)}
+function sfxBounce(){playSound(200,'triangle',0.15,0.2);setTimeout(()=>playSound(150,'triangle',0.1,0.15),100)}
+function sfxCorrect(){playSound(600,'sine',0.1,0.1);setTimeout(()=>playSound(900,'sine',0.1,0.1),80);setTimeout(()=>playSound(1200,'sine',0.12,0.15),160)}
+function sfxWrong(){playSound(250,'sawtooth',0.1,0.2)}
+function sfxCollect(){playSound(1000,'sine',0.08,0.1);setTimeout(()=>playSound(1400,'sine',0.08,0.12),60)}
+function sfxWin(){const notes=[523,659,784,1047];notes.forEach((f,i)=>setTimeout(()=>playSound(f,'sine',0.15,0.2),i*120))}
+function sfxJump(){playSound(300,'sine',0.05,0.1);setTimeout(()=>playSound(500,'sine',0.05,0.1),50)}
+function sfxHit(){playSound(80,'sawtooth',0.2,0.3)}
+
+// ==================== 游戏状态 ====================
+const STATE={
+  level:0, totalLevels:4, score:0, maxScore:0,
+  lv1:{selected:null,slots:[],piecesUsed:[],completed:false,wrongAttempts:0},
+  lv2:{selectedWord:null,wordSpawnId:null,wordsOnScreen:[],score:0,targetScore:15,completed:false,gameActive:false},
+  lv3:{lives:3,completed:false},
+  lv4:{score:0,targetScore:500,completed:false,selected:null,board:[],rows:6,cols:6}
+};
+
+// ==================== 企业文化数据 ====================
+const CULTURE={
+  mission:'在追求全体员工物质精神双幸福的同时，以科技革新地面美学，为人类绿色健康新生活做出贡献',
+  missionParts:[
+    '在追求全体员工',
+    '物质精神',
+    '双幸福的同时，',
+    '以科技革新',
+    '地面美学，',
+    '为人类',
+    '绿色健康',
+    '新生活',
+    '做出贡献',
+  ],
+  missionDistractors:[
+    '打造第一品牌',   // 来自愿景，不在使命中
+    '实现百年目标',   // 虚构干扰项
+    '拼搏高效共赢',   // 来自价值观，不在使命中
+  ],
+  vision:'打造中国弹性地板第一品牌\n铸就百年昌盛的民族企业',
+  values:['拼搏','高效','创新','共赢'],
+  wordBins:{
+    拼搏:{icon:'💪',color:'#ef4444',words:['迎难而上','全力以赴','主动担当','精益求精','使命必达','突破极限','永不放弃','坚持奋斗']},
+    高效:{icon:'⚡',color:'#3b82f6',words:['流程优化','执行力强','结果导向','快速响应','日清日毕','精准执行','事半功倍','效率优先']},
+    创新:{icon:'💡',color:'#8b5cf6',words:['技术创新','产品迭代','研发突破','创意提案','工艺改良','颠覆传统','前沿探索','持续改进']},
+    共赢:{icon:'🤝',color:'#10b981',words:['合作共赢','团队协作','客户至上','利益共享','共同成长','资源整合','生态共建','价值共生']},
+  },
+  trashWords:['单打独斗','抄袭模仿','推卸责任','拖延怠工','偷工减料','敷衍了事','固步自封','自私自利','弄虚作假','投机取巧'],
+  lv4Symbols:[
+    {icon:'💎',label:'拼搏',color:'rgba(99,102,241,0.2)'},
+    {icon:'🔮',label:'高效',color:'rgba(139,92,246,0.2)'},
+    {icon:'⚜️',label:'创新',color:'rgba(16,185,129,0.2)'},
+    {icon:'🏆',label:'共赢',color:'rgba(245,158,11,0.2)'},
+    {icon:'🌟',label:'使命',color:'rgba(236,72,153,0.2)'},
+    {icon:'👑',label:'愿景',color:'rgba(59,130,246,0.2)'},
+  ],
+  levelNames:['石破天惊·使命铭刻','能量归位·价值驱动','极速驰骋·第一品牌','文化融合·昌盛之路']
+};
+
+const PASS_TEXTS=[
+  '使命如磐石，铭刻于心。你已成功拼接出公司使命的完整蓝图，每一块碎片都是我们前行的力量！',
+  '价值观已各归其位！正向能量汇聚成河，负向行为被彻底清除。你深刻理解了拼搏、高效、创新、共赢的真谛。',
+  '你在弹性地板铺就的赛道上极速驰骋，收集星光、冲破终点！「第一品牌」的荣耀旗帜已在终点高高飘扬，这就是我们引领行业的速度与激情！',
+  '文化的火花在指尖绽放！你通过消消乐的方式，将企业精神深植心中。四关已过，荣耀加冕！'
+];
+
+// ==================== 工具函数 ====================
+function toast(msg,type='info'){const c=document.getElementById('toastContainer');const t=document.createElement('div');t.className=`toast toast-${type}`;t.textContent=msg;c.appendChild(t);setTimeout(()=>t.remove(),2500)}
+function spawnConfetti(count=50){const w=document.createElement('div');w.className='confetti-wrap';const cols=['#fbbf24','#f59e0b','#ef4444','#3b82f6','#10b981','#8b5cf6','#ec4899','#f97316'];for(let i=0;i<count;i++){const c=document.createElement('div');c.className='confetti';c.style.left=Math.random()*100+'%';c.style.backgroundColor=cols[Math.floor(Math.random()*cols.length)];c.style.width=(5+Math.random()*10)+'px';c.style.height=(5+Math.random()*10)+'px';c.style.animationDuration=(2+Math.random()*3)+'s';c.style.animationDelay=Math.random()*0.6+'s';w.appendChild(c)}document.body.appendChild(w);setTimeout(()=>w.remove(),4000)}
+function showLevelClear(passText,cb){
+  spawnConfetti(70);
+  const overlay=document.createElement('div');overlay.className='modal-overlay';
+  overlay.innerHTML=`
+    <div class="modal">
+      <div class="modal-icon">🎉</div>
+      <div class="modal-title">${STATE.level<STATE.totalLevels?`第${STATE.level}关 通过！`:'全部通关！'}</div>
+      <div class="modal-pass-text">${passText}</div>
+      <button class="btn-gold" id="modalNextBtn">${STATE.level<STATE.totalLevels?'进入下一关 →':'查看通关荣耀 🏆'}</button>
+    </div>`;
+  document.body.appendChild(overlay);
+  sfxWin();
+  document.getElementById('modalNextBtn').addEventListener('click',()=>{
+    overlay.remove();
+    if(STATE.level<STATE.totalLevels){STATE.level++;renderLevel()}else{renderFinal()}
+  });
+}
+
+// ==================== 星空背景 ====================
+function createStars(){
+  const c=document.getElementById('stars');
+  for(let i=0;i<80;i++){const s=document.createElement('div');s.className='star';
+  s.style.left=Math.random()*100+'%';s.style.top=Math.random()*100+'%';
+  s.style.width=(1+Math.random()*2.5)+'px';s.style.height=s.style.width;
+  s.style.animationDuration=(2+Math.random()*4)+'s';s.style.animationDelay=Math.random()*3+'s';
+  c.appendChild(s)}
+}createStars();
+
+// ==================== 首页 ====================
+function renderHome(){
+  document.getElementById('gameContainer').innerHTML=`
+    <div class="home-screen">
+      <div class="home-logo">🏗️</div>
+      <div class="home-title">铺就辉煌</div>
+      <div class="home-subtitle">企业文化闯关之旅</div>
+      <div class="home-badge"><span>⚜️</span><span>使命 · 愿景 · 价值观</span><span>⚜️</span></div>
+      <div class="home-desc">
+        四重关卡，层层递进<br>
+        在挑战中领悟企业文化真谛<br>
+        以智慧与勇气铺就辉煌之路
+      </div>
+      <button class="home-btn" onclick="startGame()">开 始 闯 关</button>
+      <div class="home-features">
+        <div class="home-feat"><div class="feat-icon">🧩</div><div class="feat-label">使命拼图</div></div>
+        <div class="home-feat"><div class="feat-icon">⚡</div><div class="feat-label">价值归类</div></div>
+        <div class="home-feat"><div class="feat-icon">🏎️</div><div class="feat-label">极速驰骋</div></div>
+        <div class="home-feat"><div class="feat-icon">💎</div><div class="feat-label">文化消消乐</div></div>
+      </div>
+    </div>`;
+}
+function startGame(){STATE.level=1;STATE.score=0;STATE.maxScore=0;renderLevel()}
+
+// ==================== 关卡路由 ====================
+function renderLevel(){
+  switch(STATE.level){
+    case 1:renderLevel1();break;
+    case 2:renderLevel2();break;
+    case 3:renderLevel3();break;
+    case 4:renderLevel4();break;
+  }
+}
+
+function levelHeader(lives=null,timer=null){
+  let livesHtml='';if(lives!==null){livesHtml='<div class="lh-lives">'+Array.from({length:3},(_,i)=>`<span class="lh-life${i>=lives?' lost':''}">❤️</span>`).join('')+'</div>'}
+  let timerHtml='';if(timer!==null){timerHtml=`<div class="lh-timer" id="lvTimer">${timer}s</div>`}
+  return `
+  <div class="level-header">
+    <div class="lh-icon">${['','🧩','⚡','🏎️','💎'][STATE.level]}</div>
+    <div class="lh-info">
+      <div class="lh-title">第${STATE.level}关：${CULTURE.levelNames[STATE.level-1]}</div>
+      <div class="progress-mini"><div class="progress-mini-fill" style="width:${((STATE.level-1)/STATE.totalLevels)*100}%"></div></div>
+    </div>
+    ${livesHtml}${timerHtml}
+  </div>`;
+}
+
+// ==================== 第一关：石破天惊·使命铭刻 ====================
+// 不规则拼图槽位布局（grid-row, grid-column-start, grid-column-end）
+const LV1_SLOT_LAYOUT=[
+  {r:1,cs:1,ce:4},{r:1,cs:4,ce:7},
+  {r:2,cs:1,ce:3},{r:2,cs:3,ce:5},{r:2,cs:5,ce:7},
+  {r:3,cs:1,ce:5},{r:3,cs:5,ce:7},
+  {r:4,cs:1,ce:4},{r:4,cs:4,ce:7},
+];
+
+function renderLevel1(){
+  STATE.lv1={selected:null,slots:Array(CULTURE.missionParts.length).fill(null),piecesUsed:[],completed:false,wrongAttempts:0};
+  // 混合正确碎片 + 干扰项，全部打乱
+  const allParts=[...CULTURE.missionParts,...CULTURE.missionDistractors].sort(()=>Math.random()-0.5);
+  document.getElementById('gameContainer').innerHTML=`
+    ${levelHeader()}
+    <div class="lv1-scene">
+      <div class="lv1-theme">
+        <div class="lv1-theme-icon">🪨</div>
+        <div class="lv1-theme-title">石破天惊 · 使命铭刻</div>
+        <div class="lv1-theme-hint">⚠️ 碎片中混入了干扰项，请甄别并拼出正确使命</div>
+      </div>
+      <div class="lv1-board">
+        <div class="lv1-section-title">📌 点击碎片再点槽位填入（按正确顺序排列）</div>
+        <div class="lv1-slots" id="lv1Slots">
+          ${CULTURE.missionParts.map((_,i)=>{
+            const pos=LV1_SLOT_LAYOUT[i];
+            return `<div class="lv1-slot" data-idx="${i}" onclick="lv1SlotClick(${i})" style="grid-row:${pos.r};grid-column:${pos.cs}/${pos.ce}">···</div>`;
+          }).join('')}
+        </div>
+        <div class="lv1-progress-info">
+          <span>已拼对：<b id="lv1Progress">0</b> / ${CULTURE.missionParts.length}</span>
+          <span style="color:#ef4444">干扰项：${CULTURE.missionDistractors.length} 个</span>
+        </div>
+        <div class="lv1-divider"></div>
+        <div class="lv1-pieces" id="lv1Pieces">
+          ${allParts.map((p,i)=>`<div class="lv1-piece" data-text="${p.replace(/"/g,'&quot;')}" data-idx="${i}" onclick="lv1PieceClick(this)">${p}</div>`).join('')}
+        </div>
+        <div class="lv1-ctrls">
+          <button class="btn-sm" onclick="renderLevel1()">🔄 重新洗牌</button>
+        </div>
+      </div>
+    </div>`;
+}
+
+function lv1PieceClick(el){
+  if(el.classList.contains('used')||STATE.lv1.completed)return;
+  document.querySelectorAll('.lv1-piece').forEach(p=>p.classList.remove('selected'));
+  el.classList.add('selected');
+  STATE.lv1.selected={el:el,text:el.dataset.text};
+  document.querySelectorAll('.lv1-slot').forEach(s=>{if(!s.classList.contains('filled')&&!s.classList.contains('correct'))s.classList.add('slot-hover')});
+}
+
+function lv1SlotClick(idx){
+  if(!STATE.lv1.selected||STATE.lv1.completed)return;
+  if(STATE.lv1.slots[idx]!==null)return;
+  const slot=document.querySelector(`.lv1-slot[data-idx="${idx}"]`);
+  const piece=STATE.lv1.selected;
+  document.querySelectorAll('.lv1-slot').forEach(s=>s.classList.remove('slot-hover'));
+  document.querySelectorAll('.lv1-piece').forEach(p=>p.classList.remove('selected'));
+
+  // 检查该碎片是否属于使命（不是干扰项）
+  const isPartOfMission=CULTURE.missionParts.includes(piece.text);
+  const isCorrectPos=CULTURE.missionParts[idx]===piece.text;
+
+  STATE.lv1.slots[idx]=piece.text;
+  slot.innerHTML=piece.text;
+  slot.classList.add('filled');
+
+  if(isCorrectPos){
+    // 位置完全正确！
+    slot.classList.add('correct');
+    piece.el.classList.add('used');
+    sfxStoneClick();
+    STATE.score+=25;
+    toast('✅ 咔嚓！拼对了','success');
+    updateLv1Progress();
+  }else if(isPartOfMission){
+    // 是正确碎片但位置不对
+    slot.classList.add('wrong');
+    sfxBounce();
+    STATE.lv1.wrongAttempts++;
+    setTimeout(()=>{
+      slot.classList.remove('wrong','filled');
+      slot.innerHTML='···';
+      STATE.lv1.slots[idx]=null;
+      piece.el.classList.add('bounce-back');
+      setTimeout(()=>piece.el.classList.remove('bounce-back'),400);
+    },500);
+    STATE.score=Math.max(0,STATE.score-3);
+    toast('❌ 顺序不对！请重新选择位置','error');
+  }else{
+    // 干扰项！不属于使命
+    slot.classList.add('wrong');
+    piece.el.classList.add('wrong-piece');
+    sfxBounce();
+    STATE.lv1.wrongAttempts++;
+    setTimeout(()=>{
+      slot.classList.remove('wrong','filled');
+      slot.innerHTML='···';
+      STATE.lv1.slots[idx]=null;
+      piece.el.classList.remove('wrong-piece');
+      piece.el.classList.add('bounce-back');
+      setTimeout(()=>piece.el.classList.remove('bounce-back'),400);
+    },500);
+    STATE.score=Math.max(0,STATE.score-5);
+    toast('🚫 这是干扰项！不属于使命','error');
+  }
+  STATE.lv1.selected=null;
+  lv1CheckComplete();
+}
+
+function updateLv1Progress(){
+  const correct=STATE.lv1.slots.filter((v,i)=>v===CULTURE.missionParts[i]).length;
+  const el=document.getElementById('lv1Progress');
+  if(el)el.textContent=correct;
+}
+
+function lv1CheckComplete(){
+  if(STATE.lv1.slots.every((v,i)=>v===CULTURE.missionParts[i])){
+    STATE.lv1.completed=true;
+    STATE.score+=40;
+    setTimeout(()=>showLevelClear(PASS_TEXTS[0],()=>{STATE.level++;renderLevel()}),800);
+  }
+}
+
+// ==================== 第二关：能量归位·价值驱动 ====================
+function renderLevel2(){
+  STATE.lv2={selectedWord:null,wordSpawnId:null,wordsOnScreen:[],score:0,targetScore:15,completed:false,gameActive:true};
+  document.getElementById('gameContainer').innerHTML=`
+    ${levelHeader()}
+    <div class="lv2-scene" id="lv2Scene">
+      <div class="lv2-theme"><div class="lv2-theme-title">⚡ 能量归位 · 价值驱动</div></div>
+      <div class="lv2-score-board">✅ <span id="lv2Score">0</span> / ${STATE.lv2.targetScore}</div>
+      <div class="lv2-drop-zone" id="lv2DropZone"></div>
+      <div class="lv2-buckets">
+        ${Object.entries(CULTURE.wordBins).map(([k,v])=>`<div class="lv2-bucket" data-bin="${k}" onclick="lv2DropToBin('${k}')" style="border-color:${v.color}33"><div class="b-icon">${v.icon}</div><div class="b-name" style="color:${v.color}">${k}</div><div class="b-count" id="bc_${k}">0</div></div>`).join('')}
+        <div class="lv2-bucket lv2-trash" data-bin="trash" onclick="lv2DropToBin('trash')"><div class="b-icon">🗑️</div><div class="b-name" style="color:#ef4444">垃圾桶</div><div class="b-count" id="bc_trash">0</div></div>
+      </div>
+    </div>`;
+  startLv2Spawning();
+}
+
+function startLv2Spawning(){
+  if(STATE.lv2.wordSpawnId)clearInterval(STATE.lv2.wordSpawnId);
+  // 预生成词库
+  const goodWords=[];
+  Object.entries(CULTURE.wordBins).forEach(([bin,data])=>{data.words.forEach(w=>goodWords.push({word:w,bin:bin,color:data.color}))});
+  const badWords=CULTURE.trashWords.map(w=>({word:w,bin:'trash',color:'#ef4444'}));
+  const allWords=[...goodWords,...badWords];
+  let pool=[...allWords].sort(()=>Math.random()-0.5);
+  // 首次一口气生成6个词
+  for(let i=0;i<6;i++){if(pool.length===0)pool=[...allWords].sort(()=>Math.random()-0.5);spawnLv2Word(pool.pop())}
+
+  // 定时检查：屏幕词少于4个就补充
+  STATE.lv2.wordSpawnId=setInterval(()=>{
+    if(!STATE.lv2.gameActive||STATE.lv2.completed)return;
+    if(STATE.lv2.wordsOnScreen.length>=4)return;
+    if(pool.length===0)pool=[...allWords].sort(()=>Math.random()-0.5);
+    const need=4-STATE.lv2.wordsOnScreen.length;
+    for(let i=0;i<Math.min(need,3);i++){spawnLv2Word(pool.pop())}
+  },1500);
+}
+
+// 预先分配不重叠的位置
+let _lv2UsedPositions=[];
+const _lv2FloatAnims=['floatA','floatB','floatC','floatD'];
+
+function spawnLv2Word(wData){
+  const zone=document.getElementById('lv2DropZone');
+  if(!zone)return;
+
+  // 找一个不重叠的位置
+  const zoneW=zone.clientWidth||360;
+  const zoneH=(zone.clientHeight||480)-100;
+  let left,top,attempts=0;
+  do{
+    left=5+Math.random()*80;
+    top=12+Math.random()*(zoneH/zone.clientHeight*100-25);
+    attempts++;
+  }while(attempts<15&&_lv2UsedPositions.some(p=>Math.abs(p.left-left)<16&&Math.abs(p.top-top)<14));
+  _lv2UsedPositions.push({left,top});
+  if(_lv2UsedPositions.length>20)_lv2UsedPositions=_lv2UsedPositions.slice(-20);
+
+  const el=document.createElement('div');
+  el.className='lv2-word';
+  el.textContent=wData.word;
+  el.dataset.bin=wData.bin;
+  el.dataset.posIdx=_lv2UsedPositions.length-1;
+  el.style.left=left+'%';
+  el.style.top=top+'%';
+  el.style.background=wData.color+'22';
+  el.style.border='1px solid '+wData.color+'55';
+  el.style.color=wData.color;
+  // 随机浮动动画
+  const animName=_lv2FloatAnims[Math.floor(Math.random()*_lv2FloatAnims.length)];
+  const animDur=3+Math.random()*3;
+  el.style.animation=`wordAppear 0.5s ease forwards, ${animName} ${animDur}s ease-in-out ${Math.random()*2}s infinite`;
+  el.addEventListener('click',(e)=>{e.stopPropagation();lv2SelectWord(el,wData)});
+  el.addEventListener('touchstart',(e)=>{e.preventDefault();lv2SelectWord(el,wData)});
+  zone.appendChild(el);
+  STATE.lv2.wordsOnScreen.push(el);
+}
+
+function lv2SelectWord(el,wData){
+  if(!STATE.lv2.gameActive||STATE.lv2.completed)return;
+  // Deselect previous
+  if(STATE.lv2.selectedWord){STATE.lv2.selectedWord.el.classList.remove('selected')}
+  if(STATE.lv2.selectedWord&&STATE.lv2.selectedWord.el===el){STATE.lv2.selectedWord=null;el.classList.remove('selected');return}
+  el.classList.add('selected');
+  STATE.lv2.selectedWord={el:el,data:wData};
+  // Highlight buckets
+  document.querySelectorAll('.lv2-bucket').forEach(b=>b.classList.add('bucket-hover'));
+}
+
+function lv2DropToBin(binName){
+  if(!STATE.lv2.selectedWord||!STATE.lv2.gameActive||STATE.lv2.completed)return;
+  const sw=STATE.lv2.selectedWord;
+  document.querySelectorAll('.lv2-bucket').forEach(b=>b.classList.remove('bucket-hover'));
+  sw.el.classList.remove('selected');
+  const bucket=document.querySelector(`.lv2-bucket[data-bin="${binName}"]`);
+
+  if(sw.data.bin===binName){
+    // Correct!
+    sw.el.classList.add('caught');
+    bucket.classList.add('bucket-flash');
+    sfxCollect();
+    STATE.lv2.score++;
+    STATE.score+=10;
+    document.getElementById('lv2Score').textContent=STATE.lv2.score;
+    const cntEl=document.getElementById('bc_'+binName);if(cntEl)cntEl.textContent=parseInt(cntEl.textContent)+1;
+
+    setTimeout(()=>{
+      _lv2UsedPositions=_lv2UsedPositions.filter((_,i)=>i!==parseInt(sw.el.dataset.posIdx));
+      sw.el.remove();
+      STATE.lv2.wordsOnScreen=STATE.lv2.wordsOnScreen.filter(w=>w!==sw.el);
+    },400);
+    toast('✅ 正确归类！','success');
+
+    if(STATE.lv2.score>=STATE.lv2.targetScore){
+      STATE.lv2.completed=true;
+      STATE.lv2.gameActive=false;
+      if(STATE.lv2.wordSpawnId)clearInterval(STATE.lv2.wordSpawnId);
+      STATE.score+=20;
+      setTimeout(()=>showLevelClear(PASS_TEXTS[1],()=>{STATE.level++;renderLevel()}),800);
+    }
+  }else{
+    // Wrong!
+    bucket.classList.add('bucket-wrong');
+    sfxWrong();
+    STATE.score=Math.max(0,STATE.score-5);
+    toast('❌ 归类错误！请重新选择','error');
+    setTimeout(()=>bucket.classList.remove('bucket-wrong'),500);
+  }
+  STATE.lv2.selectedWord=null;
+}
+
+// ==================== 第三关：极速驰骋·第一品牌 ====================
+function renderLevel3(){
+  STATE.lv3={lives:3,starsCollected:0,starTarget:25,distance:0,targetDistance:3000,completed:false,speed:2.5,lane:1,laneTarget:1,invincible:0,gameActive:true};
+  document.getElementById('gameContainer').innerHTML=`
+    ${levelHeader(3)}
+    <div class="lv3-scene">
+      <div class="lv3-theme">
+        <div class="lv3-theme-icon">🏎️</div>
+        <div class="lv3-theme-title">极速驰骋 · 第一品牌</div>
+      </div>
+      <div class="lv3-canvas-wrap" id="lv3CanvasWrap">
+        <canvas id="lv3Canvas"></canvas>
+        <div class="lv3-overlay" id="lv3Overlay" style="display:none">
+          <div class="overlay-text" id="lv3OverlayText"></div>
+          <div class="overlay-sub" id="lv3OverlaySub"></div>
+        </div>
+      </div>
+      <div class="lv3-ctrl-hint">
+        <span>⬅️ 或 A 左移</span>
+        <span>➡️ 或 D 右移</span>
+        <span>📱 手机：左右滑动换道</span>
+      </div>
+    </div>`;
+  initLv3Racing();
+}
+
+function initLv3Racing(){
+  const wrap=document.getElementById('lv3CanvasWrap');
+  const canvas=document.getElementById('lv3Canvas');
+  const ctx=canvas.getContext('2d');
+
+  // Responsive canvas
+  const w=wrap.clientWidth;
+  const h=Math.min(w*0.88,window.innerHeight*0.85);
+  canvas.width=w*2;canvas.height=h*2;
+  canvas.style.width=w+'px';canvas.style.height=h+'px';
+  ctx.scale(2,2);
+
+  // Lane setup
+  const laneCount=3;
+  const laneW=w/laneCount;
+  const laneCenters=[laneW/2, laneW*1.5, laneW*2.5];
+
+  STATE.lv3.starsCollected=0;
+  STATE.lv3.distance=0;
+  STATE.lv3.targetDistance=3000;
+  STATE.lv3.speed=3;
+  STATE.lv3.lane=1;
+  STATE.lv3.lives=3;
+  STATE.lv3.invincible=0;
+  STATE.lv3.gameActive=true;
+
+  // Road scroll offset for floor tiles
+  let roadOffset=0;
+  // Stars on the road
+  let roadStars=[];
+  // Obstacles
+  let obstacles=[];
+  let frameCount=0;
+  let gameOver=false;
+  let gameWin=false;
+  const targetDistance=3000;
+  const starTarget=25;
+  let keys={};
+
+  // Generate initial stars
+  for(let i=0;i<12;i++){
+    roadStars.push({lane:Math.floor(Math.random()*3), y:Math.random()*h*1.5, r:10+Math.random()*6});
+  }
+
+  // Keyboard input
+  window.addEventListener('keydown',e=>{
+    if(!gameOver&&!gameWin&&STATE.lv3.gameActive){
+      if(e.key==='ArrowLeft'||e.key==='a'||e.key==='A'){
+        e.preventDefault();
+        if(STATE.lv3.lane>0)STATE.lv3.lane--;
+        sfxCollect();
+      }
+      if(e.key==='ArrowRight'||e.key==='d'||e.key==='D'){
+        e.preventDefault();
+        if(STATE.lv3.lane<2)STATE.lv3.lane++;
+        sfxCollect();
+      }
+    }
+  });
+
+  // Touch swipe controls
+  let touchStartX=0,touchStartY=0;
+  canvas.addEventListener('touchstart',e=>{e.preventDefault();
+    const t=e.touches[0];touchStartX=t.clientX;touchStartY=t.clientY;
+  });
+  canvas.addEventListener('touchend',e=>{
+    e.preventDefault();
+    if(!gameOver&&!gameWin&&STATE.lv3.gameActive){
+      const dx=(e.changedTouches[0]||{clientX:touchStartX}).clientX-touchStartX;
+      if(Math.abs(dx)>25){
+        if(dx<0&&STATE.lv3.lane>0){STATE.lv3.lane--;sfxCollect()}
+        if(dx>0&&STATE.lv3.lane<2){STATE.lv3.lane++;sfxCollect()}
+      }
+    }
+  });
+
+  function starSpawnCheck(){
+    const activeStars=roadStars.filter(s=>s.y<h*1.6);
+    if(activeStars.length<8){
+      for(let i=0;i<3+Math.floor(Math.random()*3);i++){
+        roadStars.push({lane:Math.floor(Math.random()*3), y:-20-Math.random()*200, r:10+Math.random()*6});
+      }
+    }
+  }
+
+  function obstacleSpawnCheck(){
+    if(frameCount%50===0&&STATE.lv3.distance>500){
+      obstacles.push({lane:Math.floor(Math.random()*3), y:-40-Math.random()*100, w:laneW*0.5, h:laneW*0.5});
+    }
+  }
+
+  function update(){
+    if(gameOver||gameWin||!STATE.lv3.gameActive)return;
+    frameCount++;
+
+    // Update distance
+    STATE.lv3.distance+=STATE.lv3.speed*0.8;
+    if(STATE.lv3.speed<7)STATE.lv3.speed+=0.001;
+
+    // Update road offset
+    roadOffset=(roadOffset+STATE.lv3.speed)%60;
+
+    // Move stars downward
+    roadStars.forEach(s=>{s.y+=STATE.lv3.speed});
+    roadStars=roadStars.filter(s=>s.y<h*1.8);
+
+    // Move obstacles downward
+    obstacles.forEach(o=>{o.y+=STATE.lv3.speed});
+    obstacles=obstacles.filter(o=>o.y<h*1.8);
+
+    // Spawn new stars & obstacles
+    starSpawnCheck();
+    obstacleSpawnCheck();
+
+    // Collision: collect stars
+    const carCx=laneCenters[STATE.lv3.lane];
+    const carCy=h-70;
+    for(let s of roadStars){
+      if(!s.collected){
+        const dist=Math.hypot(carCx-s.x, carCy-s.y);
+        if(dist<s.r+22){
+          s.collected=true;
+          STATE.lv3.starsCollected++;
+          STATE.score+=2;
+          sfxCollect();
+          // Particle effect stored in s
+          s.sparkTime=15;
+        }
+      }
+    }
+
+    // Collision: obstacles
+    if(STATE.lv3.invincible>0)STATE.lv3.invincible--;
+    for(let o of obstacles){
+      if(!o.hit){
+        const ox=laneCenters[o.lane]-o.w/2;
+        const oy=o.y;
+        if(carCx>ox-10&&carCx<ox+o.w+10&&carCy>oy-10&&carCy<oy+o.h+10){
+          if(STATE.lv3.invincible<=0){
+            o.hit=true;
+            STATE.lv3.lives--;
+            STATE.lv3.invincible=40;
+            sfxHit();
+            updateLivesDisplay();
+            if(STATE.lv3.lives<=0){
+              gameOver=true;STATE.lv3.gameActive=false;
+              showLv3Overlay('💔','星途中断...<br>重新挑战',()=>setTimeout(()=>renderLevel3(),1800));
+            }
+          }
+        }
+      }
+    }
+
+    // Win condition: collected enough stars + reached target distance
+    if(STATE.lv3.distance>=targetDistance&&STATE.lv3.starsCollected>=starTarget){
+      gameWin=true;STATE.lv3.gameActive=false;
+      STATE.lv3.completed=true;STATE.score+=40;
+      showLv3Overlay('🏁🚗💨','冲过终点线！<br>「第一品牌」荣耀达成！',()=>{
+        sfxWin();
+        setTimeout(()=>showLevelClear(PASS_TEXTS[2],()=>{STATE.level++;renderLevel()}),1500);
+      });
+    }
+  }
+
+  function loseLife(){
+    STATE.lv3.lives--;
+    sfxHit();
+    updateLivesDisplay();
+    if(STATE.lv3.lives<=0){gameOver=true;STATE.lv3.gameActive=false;showLv3Overlay('💔','3次机会已用完...<br>重新挑战',()=>setTimeout(()=>renderLevel3(),1800))}
+    else{STATE.lv3.invincible=40}
+  }
+
+  function showLv3Overlay(icon,text,cb){
+    const ov=document.getElementById('lv3Overlay');
+    document.getElementById('lv3OverlayText').innerHTML=icon;
+    document.getElementById('lv3OverlaySub').innerHTML=text;
+    ov.style.display='flex';
+    if(cb)setTimeout(cb,2200);
+  }
+
+  function updateLivesDisplay(){
+    document.querySelectorAll('.lh-life').forEach((el,i)=>{if(i>=STATE.lv3.lives)el.classList.add('lost');else el.classList.remove('lost')});
+  }
+
+  // Draw floor tile pattern
+  function drawFloorTile(cx,cy,tw,th,alpha){
+    ctx.save();
+    if(alpha!==undefined)ctx.globalAlpha=alpha;
+    // Main tile
+    const woodGrad=ctx.createLinearGradient(cx-tw/2,cy, cx+tw/2,cy);
+    woodGrad.addColorStop(0,'#8B6914');
+    woodGrad.addColorStop(0.3,'#c49a2c');
+    woodGrad.addColorStop(0.5,'#d4a843');
+    woodGrad.addColorStop(0.7,'#c49a2c');
+    woodGrad.addColorStop(1,'#8B6914');
+    ctx.fillStyle=woodGrad;
+    ctx.fillRect(cx-tw/2,cy-th/2,tw,th);
+    // Grain lines
+    ctx.strokeStyle='rgba(139,90,43,0.25)';
+    ctx.lineWidth=0.5;
+    for(let gy=cy-th/2+4;gy<cy+th/2;gy+=8){
+      ctx.beginPath();ctx.moveTo(cx-tw/2+2,gy);ctx.lineTo(cx+tw/2-2,gy);
+      ctx.stroke();
+    }
+    // Border highlight
+    ctx.strokeStyle='#e8d072';
+    ctx.lineWidth=1;
+    ctx.strokeRect(cx-tw/2,cy-th/2,tw,th);
+    ctx.restore();
+  }
+
+  function draw(){
+    ctx.clearRect(0,0,w,h);
+
+    // Background
+    const bgGrad=ctx.createLinearGradient(0,0,0,h);
+    bgGrad.addColorStop(0,'#1a0a00');bgGrad.addColorStop(0.3,'#2d1810');
+    bgGrad.addColorStop(0.7,'#3d2215');bgGrad.addColorStop(1,'#1a0a00');
+    ctx.fillStyle=bgGrad;ctx.fillRect(0,0,w,h);
+
+    // Road surface - 3 lanes
+    const roadLeft=laneW*0.08;
+    const roadRight=w-laneW*0.08;
+    ctx.fillStyle='#2a2a2a';
+    ctx.fillRect(roadLeft,0,roadRight-roadLeft,h);
+
+    // Lane dividers (dashed)
+    ctx.strokeStyle='rgba(255,255,255,0.4)';
+    ctx.lineWidth=2;
+    ctx.setLineDash([15,20]);
+    for(let l=1;l<laneCount;l++){
+      const lx=laneW*l;
+      ctx.beginPath();
+      let dy=roadOffset%35;
+      while(dy<h){ctx.moveTo(lx,dy);ctx.lineTo(lx,dy+15);dy+=35}
+      ctx.stroke();
+    }
+    ctx.setLineDash([]);
+
+    // Floor tiles on each lane (scrolling grid)
+    const tileH=50,tileW=laneW*0.75;
+    for(let l=0;l<laneCount;l++){
+      const cx=laneCenters[l];
+      let ty=roadOffset%tileH - tileH;
+      while(ty<h+tileH){
+        const distFromBottom=Math.abs(ty-h*0.65);
+        const alpha=Math.max(0.15, 1-distFromBottom/(h*0.7));
+        drawFloorTile(cx,ty,tileW,tileH-2,alpha*0.7);
+        ty+=tileH;
+      }
+    }
+
+    // Road edge glow
+    ctx.strokeStyle='rgba(251,191,36,0.25)';
+    ctx.lineWidth=3;
+    ctx.beginPath();ctx.moveTo(roadLeft,0);ctx.lineTo(roadLeft,h);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(roadRight,0);ctx.lineTo(roadRight,h);ctx.stroke();
+
+    // Road stars
+    for(let s of roadStars){
+      if(s.y>-40&&s.y<h+40&&!s.collected){
+        s.x=s.x||laneCenters[s.lane];
+        const pulse=1+Math.sin(frameCount*0.15+s.y*0.05)*0.15;
+        const sr=s.r*pulse;
+        // Glow
+        ctx.fillStyle='rgba(251,191,36,0.2)';
+        ctx.beginPath();ctx.arc(s.x,s.y,sr+6,0,Math.PI*2);ctx.fill();
+        // Star shape
+        ctx.fillStyle='#fbbf24';
+        ctx.shadowColor='rgba(251,191,36,0.7)';ctx.shadowBlur=8;
+        drawStar(ctx,s.x,s.y,5,sr,sr*0.45);
+        ctx.shadowBlur=0;
+      }
+      // Sparkle effect on collected
+      if(s.sparkTime>0){
+        ctx.fillStyle=`rgba(255,215,0,${s.sparkTime/15})`;
+        for(let p=0;p<6;p++){
+          const angle=(p/6)*Math.PI*2+frameCount*0.1;
+          const pr=s.r+4+s.sparkTime;
+          ctx.beginPath();ctx.arc(s.x+Math.cos(angle)*pr,s.y+Math.sin(angle)*pr,2.5,0,Math.PI*2);
+          ctx.fill();
+        }
+        s.sparkTime--;
+      }
+    }
+
+    // Obstacles (red zone / pothole on floor)
+    for(let o of obstacles){
+      if(o.y>-40&&o.y<h+40&&!o.hit){
+        const ox=laneCenters[o.lane]-o.w/2;
+        ctx.fillStyle='rgba(239,68,68,0.25)';
+        ctx.beginPath();ctx.arc(laneCenters[o.lane],o.y+o.h/2,o.w*0.6,0,Math.PI*2);ctx.fill();
+        ctx.fillStyle='#ef4444';
+        ctx.shadowColor='rgba(239,68,68,0.6)';ctx.shadowBlur=10;
+        ctx.fillStyle='#b91c1c';
+        ctx.fillRect(ox,o.y,o.w,o.h);
+        ctx.fillStyle='#dc2626';
+        ctx.beginPath();ctx.arc(laneCenters[o.lane],o.y+o.h/2,o.w*0.35,0,Math.PI*2);ctx.fill();
+        ctx.fillStyle='#fff';ctx.font=`bold ${o.w*0.2}px sans-serif`;
+        ctx.fillText('✕',laneCenters[o.lane]-o.w*0.12,o.y+o.h*0.65);
+        ctx.shadowBlur=0;
+      }
+    }
+
+    // Race car (player)
+    const carX=laneCenters[STATE.lv3.lane];
+    const carY=h-70,carW=36,carH=55;
+    if(STATE.lv3.invincible>0&&Math.floor(STATE.lv3.invincible/3)%2===0){/* blink */}else{
+      // Car shadow
+      ctx.fillStyle='rgba(0,0,0,0.3)';
+      ctx.beginPath();ctx.ellipse(carX,carY+carH*0.5,carW*0.55,carH*0.12,0,0,Math.PI*2);ctx.fill();
+      // Car body
+      const carGrad=ctx.createLinearGradient(carX,carY,carX,carY+carH);
+      carGrad.addColorStop(0,'#f97316');carGrad.addColorStop(0.4,'#ea580c');
+      carGrad.addColorStop(0.7,'#c2410c');carGrad.addColorStop(1,'#9a3412');
+      ctx.fillStyle=carGrad;
+      ctx.shadowColor='rgba(249,115,22,0.5)';ctx.shadowBlur=12;
+      ctx.beginPath();
+      ctx.moveTo(carX,carY-carH*0.15);
+      ctx.quadraticCurveTo(carX-carW*0.7,carY+carH*0.15,carX-carW*0.5,carY+carH*0.45);
+      ctx.lineTo(carX-carW*0.45,carY+carH*0.5);
+      ctx.lineTo(carX-carW*0.5,carY+carH*0.45);
+      ctx.lineTo(carX-carW*0.55,carY+carH*0.55);
+      ctx.lineTo(carX+carW*0.55,carY+carH*0.55);
+      ctx.lineTo(carX+carW*0.5,carY+carH*0.45);
+      ctx.lineTo(carX+carW*0.45,carY+carH*0.5);
+      ctx.lineTo(carX+carW*0.5,carY+carH*0.45);
+      ctx.quadraticCurveTo(carX+carW*0.7,carY+carH*0.15,carX,carY-carH*0.15);
+      ctx.fill();
+      ctx.shadowBlur=0;
+
+      // Windshield
+      ctx.fillStyle='#7dd3fc';
+      ctx.beginPath();
+      const wsy=carY-carH*0.05,wsb=carY+carH*0.12;
+      ctx.moveTo(carX-carW*0.3,wsy);
+      ctx.lineTo(carX-carW*0.35,wsb);
+      ctx.lineTo(carX+carW*0.35,wsb);
+      ctx.lineTo(carX+carW*0.3,wsy);
+      ctx.fill();
+      ctx.fillStyle='#38bdf8';ctx.fillRect(carX-carW*0.25,carY+carH*0.02,carW*0.15,4);
+      ctx.fillRect(carX+carW*0.1,carY+carH*0.02,carW*0.15,4);
+
+      // Headlights
+      ctx.fillStyle='#fef08a';ctx.shadowColor='#fbbf24';ctx.shadowBlur=6;
+      ctx.beginPath();ctx.arc(carX-carW*0.32,carY-carH*0.05,carW*0.12,0,Math.PI*2);ctx.fill();
+      ctx.beginPath();ctx.arc(carX+carW*0.32,carY-carH*0.05,carW*0.12,0,Math.PI*2);ctx.fill();
+      ctx.shadowBlur=0;
+
+      // Wheels
+      ctx.fillStyle='#1a1a1a';
+      ctx.fillRect(carX-carW*0.5,carY+carH*0.25,carW*0.16,carH*0.18);
+      ctx.fillRect(carX+carW*0.34,carY+carH*0.25,carW*0.16,carH*0.18);
+      ctx.fillRect(carX-carW*0.5,carY+carH*0.6,carW*0.16,carH*0.18);
+      ctx.fillRect(carX+carW*0.34,carY+carH*0.6,carW*0.16,carH*0.18);
+    }
+
+    // HUD - Stars counter
+    ctx.fillStyle='rgba(0,0,0,0.65)';ctx.beginPath();
+    roundRect(ctx,8,4,110,24,12);ctx.fill();
+    ctx.fillStyle='#fbbf24';ctx.font='bold 13px sans-serif';
+    ctx.fillText(`⭐ ${STATE.lv3.starsCollected}/${starTarget}`,18,20);
+
+    // HUD - Distance
+    ctx.fillStyle='rgba(0,0,0,0.65)';ctx.beginPath();
+    roundRect(ctx,w-110,4,102,24,12);ctx.fill();
+    ctx.fillStyle='#fff';ctx.font='bold 12px sans-serif';
+    ctx.fillText(`📏 ${Math.floor(STATE.lv3.distance)}m`,w-100,20);
+
+    // Speed indicator
+    ctx.fillStyle='rgba(0,0,0,0.5)';ctx.fillRect(w/2-30,4,60,16);
+    ctx.fillStyle='#f97316';ctx.font='bold 10px sans-serif';
+    ctx.fillText(`${Math.floor(STATE.lv3.speed*30)}km/h`,w/2-20,15);
+
+    // Progress bar
+    const prog=Math.min(1,STATE.lv3.distance/targetDistance);
+    ctx.fillStyle='rgba(255,255,255,0.08)';ctx.fillRect(8,h-10,w-16,6);
+    const progGrad=ctx.createLinearGradient(0,0,w,0);
+    progGrad.addColorStop(0,'#f97316');progGrad.addColorStop(0.5,'#fbbf24');progGrad.addColorStop(1,'#22c55e');
+    ctx.fillStyle=progGrad;ctx.fillRect(8,h-10,(w-16)*prog,6);
+    // Flag icon at end
+    ctx.fillText('🏁',8+(w-16)*prog-10,h-11);
+
+    // Finish line glow when close
+    if(STATE.lv3.distance>targetDistance*0.85){
+      ctx.fillStyle='rgba(34,197,94,0.08)';
+      ctx.fillRect(0,0,w,h);
+      ctx.fillStyle='#fbbf24';ctx.font='bold 14px sans-serif';
+      ctx.textAlign='center';
+      ctx.fillText('🏁 第一品牌终点线就在前方！',w/2,h*0.08);
+      ctx.textAlign='start';
+    }
+
+    // Overlay for game-over / not-enough-stars warning
+    if(STATE.lv3.distance>=targetDistance&&STATE.lv3.starsCollected<starTarget&&!gameOver&&!gameWin){
+      ctx.fillStyle='rgba(0,0,0,0.5)';ctx.fillRect(0,h-38,w,30);
+      ctx.fillStyle='#fbbf24';ctx.font='bold 12px sans-serif';ctx.textAlign='center';
+      ctx.fillText(`还需收集 ${starTarget-STATE.lv3.starsCollected} 颗星才能冲线！继续寻找✨`,w/2,h-18);
+      ctx.textAlign='start';
+    }
+  }
+
+  function gameLoop(){
+    update();draw();
+    if(!gameOver&&!gameWin)requestAnimationFrame(gameLoop);
+    else{setTimeout(()=>{if(!gameOver||gameWin)draw()},100)}
+  }
+
+  requestAnimationFrame(gameLoop);
+}
+
+// Star drawing helper
+function drawStar(ctx,cx,cy,spikes,outerR,innerR){
+  let rot=Math.PI/2*3;
+  let step=Math.PI/spikes;
+  ctx.beginPath();
+  ctx.moveTo(cx,cy-outerR);
+  for(let i=0;i<spikes;i++){
+    ctx.lineTo(cx+Math.cos(rot)*outerR,cy+Math.sin(rot)*outerR);
+    rot+=step;
+    ctx.lineTo(cx+Math.cos(rot)*innerR,cy+Math.sin(rot)*innerR);
+    rot+=step;
+  }
+  ctx.closePath();ctx.fill();
+}
+
+function roundRect(ctx,x,y,w,h,r){
+  ctx.beginPath();
+  ctx.moveTo(x+r,y);ctx.lineTo(x+w-r,y);
+  ctx.quadraticCurveTo(x+w,y,x+w,y+r);
+  ctx.lineTo(x+w,y+h-r);ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);
+  ctx.lineTo(x+r,y+h);ctx.quadraticCurveTo(x,y+h,x,y+h-r);
+  ctx.lineTo(x,y+r);ctx.quadraticCurveTo(x,y,x+r,y);
+  ctx.closePath();
+}
+
+// ==================== 第四关：文化融合·昌盛之路（消消乐）====================
+function renderLevel4(){
+  STATE.lv4={score:0,targetScore:500,completed:false,selected:null,rows:6,cols:6};
+  STATE.lv4.board=lv4GenerateBoard();
+  while(lv4HasMatch(STATE.lv4.board)){STATE.lv4.board=lv4GenerateBoard()}
+  lv4RenderBoard();
+}
+
+function lv4GenerateBoard(){
+  const symbols=CULTURE.lv4Symbols;
+  const board=[];
+  for(let r=0;r<STATE.lv4.rows;r++){
+    board[r]=[];
+    for(let c=0;c<STATE.lv4.cols;c++){
+      const sym=symbols[Math.floor(Math.random()*symbols.length)];
+      board[r][c]=sym.icon; // store only icon string for matching
+    }
+  }
+  return board;
+}
+
+function lv4HasMatch(board){
+  for(let r=0;r<board.length;r++){
+    for(let c=0;c<board[r].length-2;c++){
+      if(board[r][c]===board[r][c+1]&&board[r][c]===board[r][c+2])return true;
+    }
+  }
+  for(let c=0;c<board[0].length;c++){
+    for(let r=0;r<board.length-2;r++){
+      if(board[r][c]===board[r+1][c]&&board[r][c]===board[r+2][c])return true;
+    }
+  }
+  return false;
+}
+
+function lv4FindMatches(board){
+  const matched=new Set();
+  for(let r=0;r<board.length;r++){
+    for(let c=0;c<board[r].length-2;c++){
+      if(board[r][c]&&board[r][c]===board[r][c+1]&&board[r][c]===board[r][c+2]){
+        let end=c+2;
+        while(end+1<board[r].length&&board[r][end+1]===board[r][c])end++;
+        for(let i=c;i<=end;i++)matched.add(`${r},${i}`);
+      }
+    }
+  }
+  for(let c=0;c<board[0].length;c++){
+    for(let r=0;r<board.length-2;r++){
+      if(board[r][c]&&board[r][c]===board[r+1][c]&&board[r][c]===board[r+2][c]){
+        let end=r+2;
+        while(end+1<board.length&&board[end+1][c]===board[r][c])end++;
+        for(let i=r;i<=end;i++)matched.add(`${i},${c}`);
+      }
+    }
+  }
+  return matched;
+}
+
+function lv4RemoveAndDrop(board,matched){
+  const points=matched.size*10;
+  STATE.lv4.score+=points;
+  STATE.score+=Math.floor(points/2);
+  sfxCorrect();
+
+  // Remove matched
+  for(let key of matched){
+    const [r,c]=key.split(',').map(Number);
+    board[r][c]=null;
+  }
+  // Drop
+  for(let c=0;c<board[0].length;c++){
+    let writeRow=board.length-1;
+    for(let r=board.length-1;r>=0;r--){
+      if(board[r][c]!==null){board[writeRow][c]=board[r][c];writeRow--}
+    }
+    for(let r=writeRow;r>=0;r--){const sym=CULTURE.lv4Symbols[Math.floor(Math.random()*CULTURE.lv4Symbols.length)];board[r][c]=sym.icon}
+  }
+  return points;
+}
+
+function lv4TrySwap(r1,c1,r2,c2){
+  const board=STATE.lv4.board;
+  // Swap
+  [board[r1][c1],board[r2][c2]]=[board[r2][c2],board[r1][c1]];
+  const matches=lv4FindMatches(board);
+  if(matches.size>0){
+    // Valid swap
+    lv4AnimateMatches(matches,()=>{
+      const pts=lv4RemoveAndDrop(board,matches);
+      lv4RenderBoard();
+      lv4ChainCheck();
+    });
+  }else{
+    // Swap back
+    [board[r1][c1],board[r2][c2]]=[board[r2][c2],board[r1][c1]];
+    sfxBounce();
+    toast('无法消除，请重新选择','error');
+    STATE.lv4.selected=null;
+    lv4RenderBoard();
+  }
+}
+
+function lv4ChainCheck(){
+  const board=STATE.lv4.board;
+  const matches=lv4FindMatches(board);
+  if(matches.size>0){
+    setTimeout(()=>{
+      lv4AnimateMatches(matches,()=>{
+        const pts=lv4RemoveAndDrop(board,matches);
+        lv4RenderBoard();
+        lv4ChainCheck();
+      });
+    },300);
+  }else{
+    if(STATE.lv4.score>=STATE.lv4.targetScore){
+      STATE.lv4.completed=true;
+      STATE.score+=30;
+      setTimeout(()=>showLevelClear(PASS_TEXTS[3],()=>{/* will go to final */}),600);
+    }
+  }
+}
+
+function lv4AnimateMatches(matched,cb){
+  const cells=document.querySelectorAll('.lv4-cell');
+  for(let key of matched){
+    const [r,c]=key.split(',').map(Number);
+    const cell=document.querySelector(`.lv4-cell[data-r="${r}"][data-c="${c}"]`);
+    if(cell)cell.classList.add('matched');
+  }
+  setTimeout(cb,350);
+}
+
+function lv4CellClick(r,c){
+  if(STATE.lv4.completed)return;
+  const board=STATE.lv4.board;
+  if(STATE.lv4.selected===null){
+    STATE.lv4.selected={r,c};
+    lv4RenderBoard();
+  }else{
+    const s=STATE.lv4.selected;
+    // Check if adjacent
+    if(Math.abs(s.r-r)+Math.abs(s.c-c)===1){
+      STATE.lv4.selected=null;
+      lv4TrySwap(s.r,s.c,r,c);
+    }else{
+      STATE.lv4.selected={r,c};
+      lv4RenderBoard();
+    }
+  }
+}
+
+function lv4RenderBoard(){
+  const board=STATE.lv4.board;
+  const sel=STATE.lv4.selected;
+  const getSymbol=icon=>CULTURE.lv4Symbols.find(s=>s.icon===icon);
+  // 只在第一次或完全重置时替换整个容器，平时只更新网格
+  const existingGrid=document.getElementById('lv4Grid');
+  if(!existingGrid){
+    document.getElementById('gameContainer').innerHTML=`
+      ${levelHeader()}
+      <div class="lv4-scene">
+        <div class="lv4-theme">
+          <div class="lv4-theme-title">💎 文化融合 · 昌盛之路</div>
+          <div class="lv4-theme-sub">连接3个及以上相同宝石即可消除</div>
+        </div>
+        <div class="lv4-grid" id="lv4Grid"></div>
+        <div class="lv4-score" id="lv4Score">💎 得分：${STATE.lv4.score}</div>
+        <div class="lv4-target" id="lv4Target">目标：${STATE.lv4.targetScore} 分</div>
+        <div style="text-align:center;margin-top:10px">
+          <button class="btn-sm" onclick="renderLevel4()">🔄 重新开始</button>
+        </div>
+      </div>`;
+    // 绑定事件委托：在网格上统一监听 touch/click
+    const grid=document.getElementById('lv4Grid');
+    grid.addEventListener('touchstart',lv4GridTouch,{passive:false});
+    grid.addEventListener('click',lv4GridClick);
+  }
+  
+  // 只更新网格内容和分数/目标
+  const gridEl=document.getElementById('lv4Grid');
+  if(gridEl){
+    gridEl.innerHTML=board.map((row,r)=>row.map((cell,c)=>{
+      const sym=getSymbol(cell);
+      const label=sym?sym.label:'';
+      const bg=sym?sym.color:'rgba(255,255,255,0.1)';
+      return `<div class="lv4-cell${sel&&sel.r===r&&sel.c===c?' selected':''}" data-r="${r}" data-c="${c}" style="background:${bg}">
+        <span class="lv4-icon">${cell}</span>
+        <span class="lv4-label" style="color:${bg.replace('0.2','0.9')}">${label}</span>
+      </div>`;
+    }).join('')).join('');
+  }
+  const scoreEl=document.getElementById('lv4Score');
+  if(scoreEl)scoreEl.textContent=`💎 得分：${STATE.lv4.score}`;
+  const targetEl=document.getElementById('lv4Target');
+  if(targetEl)targetEl.textContent=`目标：${STATE.lv4.targetScore} 分`;
+}
+
+// 网格点击事件委托（桌面端）
+function lv4GridClick(e){
+  const cell=e.target.closest('.lv4-cell');
+  if(!cell)return;
+  const r=parseInt(cell.dataset.r);
+  const c=parseInt(cell.dataset.c);
+  if(!isNaN(r)&&!isNaN(c))lv4CellClick(r,c);
+}
+
+// 网格触摸事件处理（移动端）
+let lv4LastTouchTime=0;
+function lv4GridTouch(e){
+  e.preventDefault();
+  const now=Date.now();
+  if(now-lv4LastTouchTime<300)return; // 防连点
+  lv4LastTouchTime=now;
+  const cell=e.target.closest('.lv4-cell');
+  if(!cell)return;
+  const r=parseInt(cell.dataset.r);
+  const c=parseInt(cell.dataset.c);
+  if(!isNaN(r)&&!isNaN(c))lv4CellClick(r,c);
+}
+
+// ==================== 最终通关 ====================
+function renderFinal(){
+  spawnConfetti(100);sfxWin();
+  document.getElementById('gameContainer').innerHTML=`
+    <div class="final-scene">
+      <div class="final-icon">🏆</div>
+      <div class="final-title"><span class="final-sparkle">通关完成！</span></div>
+      <div class="final-sub">
+        恭喜你完成了「铺就辉煌」全部四关挑战！<br>
+        企业文化已深深铭刻在你心中
+      </div>
+      <div class="final-badges">
+        <div class="final-badge"><span class="badge-icon">🧩</span>使命铭刻者</div>
+        <div class="final-badge"><span class="badge-icon">⚡</span>价值驱动者</div>
+        <div class="final-badge"><span class="badge-icon">🏎️</span>极速骑士</div>
+        <div class="final-badge"><span class="badge-icon">💎</span>文化融合者</div>
+      </div>
+      <div style="margin:20px 0;font-size:14px;color:var(--sub)">
+        <div style="margin-bottom:8px">总得分：⭐ ${STATE.score}</div>
+        <div style="font-size:12px;color:var(--gold)">
+          使命 · 愿景 · 价值观<br>
+          拼搏 · 高效 · 创新 · 共赢
+        </div>
+      </div>
+      <button class="btn-gold" onclick="STATE.level=0;renderHome()">🔄 再来一次</button>
+    </div>`;
+
+  // Floating icons animation
+  const floating=document.createElement('div');
+  floating.className='final-floating-icons';
+  const icons=['🧩','⚡','🏎️','💎','🏆','⚜️','🌟'];
+  icons.forEach((icon,i)=>{
+    const el=document.createElement('div');
+    el.className='floating-icon';el.textContent=icon;
+    el.style.left=(10+i*25)%90+'%';el.style.top=(15+i*20)%80+'%';
+    el.style.animationDuration=(6+i*2)+'s';el.style.animationDelay=i*0.5+'s';
+    floating.appendChild(el);
+  });
+  document.body.appendChild(floating);
+  setTimeout(()=>floating.remove(),10000);
+}
+
+// ==================== 初始化 ====================
+renderHome();
+</script>
+</body>
+</html>
